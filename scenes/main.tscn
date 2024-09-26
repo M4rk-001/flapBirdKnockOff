@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnnr6332anqmw"]
+
+[ext_resource type="PackedScene" uid="uid://dtcg10nbw4trk" path="res://scenes/air_plane.tscn" id="1_fuq67"]
+[ext_resource type="Texture2D" uid="uid://dys243lfkpg8a" path="res://assets/background.webp" id="1_oodam"]
+[ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_sh35e"]
+[ext_resource type="PackedScene" uid="uid://c32fqomcrgm7y" path="res://scenes/ground.tscn" id="3_lr6dd"]
+[ext_resource type="PackedScene" uid="uid://bwhl10q64m4gg" path="res://scenes/tower_spawner.tscn" id="4_7i25r"]
+[ext_resource type="PackedScene" uid="uid://cuoharoxclsx5" path="res://scenes/ui.tscn" id="6_l1jrb"]
+
+[node name="Main" type="Node"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_sh35e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-8.99999, -9.00001)
+scale = Vector2(0.398438, 0.519531)
+texture = ExtResource("1_oodam")
+
+[node name="AirPlane" parent="." instance=ExtResource("1_fuq67")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ground" parent="." instance=ExtResource("3_lr6dd")]
+position = Vector2(-37, 268)
+
+[node name="towerSpawner" parent="." instance=ExtResource("4_7i25r")]
+
+[node name="Ui" parent="." instance=ExtResource("6_l1jrb")]

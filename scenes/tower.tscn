@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3kngnyc4f311"]
+
+[ext_resource type="Script" path="res://scenes/tower.gd" id="1_g0pvp"]
+[ext_resource type="Texture2D" uid="uid://dfo30vo1kr6r3" path="res://assets/bulding2.png" id="2_ml5e0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vf5pi"]
+size = Vector2(36.375, 2985)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08rkv"]
+size = Vector2(31, 362.188)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo0wh"]
+size = Vector2(23, 200)
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_g0pvp")
+
+[node name="topTower" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="topTower"]
+position = Vector2(-2.53519, -245.636)
+rotation = 3.14159
+scale = Vector2(0.571224, 0.600564)
+texture = ExtResource("2_ml5e0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="topTower"]
+position = Vector2(1.1875, -1501.5)
+shape = SubResource("RectangleShape2D_vf5pi")
+
+[node name="bottomTower" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="bottomTower"]
+position = Vector2(13, 317)
+scale = Vector2(0.559184, 0.532653)
+texture = ExtResource("2_ml5e0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottomTower"]
+position = Vector2(7.5, 284.094)
+shape = SubResource("RectangleShape2D_08rkv")
+
+[node name="score" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="score"]
+position = Vector2(54, 66)
+shape = SubResource("RectangleShape2D_wo0wh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="topTower" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="bottomTower" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="score" to="." method="_on_point_scored"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

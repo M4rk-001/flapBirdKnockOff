@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtcg10nbw4trk"]
+
+[ext_resource type="Script" path="res://scenes/air_plane.gd" id="1_gemp6"]
+[ext_resource type="Texture2D" uid="uid://bw5agdgakugw5" path="res://assets/airplane.png" id="2_quufo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c5gtj"]
+radius = 11.1802
+height = 34.5253
+
+[sub_resource type="Animation" id="Animation_2mm0o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0l16u"]
+resource_name = "position"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tor0w"]
+_data = {
+"RESET": SubResource("Animation_2mm0o"),
+"position": SubResource("Animation_0l16u")
+}
+
+[node name="AirPlane" type="CharacterBody2D"]
+script = ExtResource("1_gemp6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -0.0174923)
+scale = Vector2(0.0457536, 0.0608614)
+texture = ExtResource("2_quufo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.99998, 2.9825)
+rotation = 1.74533
+shape = SubResource("CapsuleShape2D_c5gtj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tor0w")
+}

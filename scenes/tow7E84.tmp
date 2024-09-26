@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwhl10q64m4gg"]
+
+[ext_resource type="Script" path="res://scenes/tower_spawner.gd" id="1_388ru"]
+
+[node name="towerSpawner" type="Node"]
+script = ExtResource("1_388ru")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
